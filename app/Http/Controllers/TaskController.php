@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    // Home page
     public function index(Request $request)
     {
         $status = $request->query('status');
@@ -21,13 +20,11 @@ class TaskController extends Controller
         return view('tasks.index', compact('tasks'));
     }
 
-    // Show add task form
     public function create()
     {
         return view('tasks.create');
     }
 
-    // Save new task to database
     public function store(Request $request)
     {
         $request->validate([
@@ -41,13 +38,11 @@ class TaskController extends Controller
         return redirect()->route('tasks.index')->with('success', 'Task added successfully!');
     }
 
-    // Show edit form
     public function edit(Task $task)
     {
         return view('tasks.edit', compact('task'));
     }
 
-    // Update task in database
     public function update(Request $request, Task $task)
     {
         $request->validate([
@@ -61,7 +56,6 @@ class TaskController extends Controller
         return redirect()->route('tasks.index')->with('success', 'Task updated successfully!');
     }
 
-    // Delete task from database
     public function destroy(Task $task)
     {
         $task->delete();
